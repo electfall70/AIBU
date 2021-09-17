@@ -15,12 +15,12 @@ public class CloudGeneration : MonoBehaviour
     private Matrix4x4 matrix;
 
     // Update is called once per frame
-    private void Start()
+    private void Update()
     {
         offset = cloudHeight / horizonatalStackSize / 2f;
         Vector3 startPosition = transform.position + (Vector3.up * (offset * horizonatalStackSize / 2f));
 
-        //Debug.Log("in CloudGeneration, update");
+        Debug.Log("in CloudGeneration, update");
 
         for (int i = 0; i < horizonatalStackSize; i++) 
         {
