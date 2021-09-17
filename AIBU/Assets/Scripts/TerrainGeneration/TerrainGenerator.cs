@@ -6,6 +6,7 @@ public struct GeneratorSetting
 {
     public float scaleX, scaleZ;
     public float minHeight, maxHeight;
+    public bool ridge;
 }
 
 [RequireComponent(typeof(MeshFilter), typeof(MeshCollider), typeof(MeshRenderer))]

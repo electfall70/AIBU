@@ -35,6 +35,8 @@ public static class NoiseGenerator
         float zCoord = z * setting.scaleZ;
         float noise = Mathf.PerlinNoise(xCoord, zCoord);
         float y = Mathf.Lerp(setting.minHeight, setting.maxHeight, noise);
+        if (setting.ridge) y = 1 - Mathf.Abs(y);
+
         return y;
     }
 }
