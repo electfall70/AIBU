@@ -20,7 +20,6 @@ public class TerrainGenerator : MonoBehaviour
     [SerializeField] private bool useFalloff;
     [SerializeField] private float falloffStrength;
 
-
     private MeshFilter meshFilter;
     private MeshCollider meshCollider;
 
@@ -35,7 +34,6 @@ public class TerrainGenerator : MonoBehaviour
             return meshFilter;
         }
     }
-
     public MeshCollider MeshCollider 
     {
         get
