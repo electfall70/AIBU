@@ -32,6 +32,9 @@
         },
         {
             "m_Id": "43dc680f76cb44d18b2a21488474aa2e"
+        },
+        {
+            "m_Id": "404706c2242d46eabc239cdc1631e738"
         }
     ],
     "m_Keywords": [],
@@ -86,6 +89,9 @@
         },
         {
             "m_Id": "e1055c2aac9f4636b5d9431d75ef2868"
+        },
+        {
+            "m_Id": "aa078c82cf68491da99fe343f9a01020"
         }
     ],
     "m_GroupDatas": [],
@@ -201,6 +207,20 @@
                     "m_Id": "620f69849dc94c699bc5092b1dd8034a"
                 },
                 "m_SlotId": 0
+            }
+        },
+        {
+            "m_OutputSlot": {
+                "m_Node": {
+                    "m_Id": "aa078c82cf68491da99fe343f9a01020"
+                },
+                "m_SlotId": 0
+            },
+            "m_InputSlot": {
+                "m_Node": {
+                    "m_Id": "e864991f8d6f4cc5933984c94c77e1b9"
+                },
+                "m_SlotId": 1613302324
             }
         },
         {
@@ -460,6 +480,31 @@
 
 {
     "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Vector4MaterialSlot",
+    "m_ObjectId": "128852834f4f4f3fa18e3c9800935826",
+    "m_Id": 0,
+    "m_DisplayName": "CloudTint",
+    "m_SlotType": 1,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "Out",
+    "m_StageCapability": 3,
+    "m_Value": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+    },
+    "m_DefaultValue": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+    },
+    "m_Labels": []
+}
+
+{
+    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.PropertyNode",
     "m_ObjectId": "1bbba7dd4c7145b0a10881b604ffd48e",
     "m_Group": {
@@ -631,6 +676,30 @@
     },
     "m_Labels": [],
     "m_Space": 0
+}
+
+{
+    "m_SGVersion": 3,
+    "m_Type": "UnityEditor.ShaderGraph.Internal.ColorShaderProperty",
+    "m_ObjectId": "404706c2242d46eabc239cdc1631e738",
+    "m_Guid": {
+        "m_GuidSerialized": "b98b717d-6102-440a-b8fd-cdf10ebb3a11"
+    },
+    "m_Name": "CloudTint",
+    "m_DefaultReferenceName": "Color_404706c2242d46eabc239cdc1631e738",
+    "m_OverrideReferenceName": "",
+    "m_GeneratePropertyBlock": true,
+    "m_Precision": 0,
+    "overrideHLSLDeclaration": false,
+    "hlslDeclarationOverride": 0,
+    "m_Hidden": false,
+    "m_Value": {
+        "r": 0.38679248094558718,
+        "g": 0.38679248094558718,
+        "b": 0.38679248094558718,
+        "a": 0.0
+    },
+    "m_ColorMode": 0
 }
 
 {
@@ -1418,6 +1487,41 @@
 }
 
 {
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.PropertyNode",
+    "m_ObjectId": "aa078c82cf68491da99fe343f9a01020",
+    "m_Group": {
+        "m_Id": ""
+    },
+    "m_Name": "Property",
+    "m_DrawState": {
+        "m_Expanded": true,
+        "m_Position": {
+            "serializedVersion": "2",
+            "x": 373.6000061035156,
+            "y": 580.0,
+            "width": 131.20001220703126,
+            "height": 34.4000244140625
+        }
+    },
+    "m_Slots": [
+        {
+            "m_Id": "128852834f4f4f3fa18e3c9800935826"
+        }
+    ],
+    "synonyms": [],
+    "m_Precision": 0,
+    "m_PreviewExpanded": true,
+    "m_PreviewMode": 0,
+    "m_CustomColors": {
+        "m_SerializableColors": []
+    },
+    "m_Property": {
+        "m_Id": "404706c2242d46eabc239cdc1631e738"
+    }
+}
+
+{
     "m_SGVersion": 3,
     "m_Type": "UnityEditor.ShaderGraph.Internal.ColorShaderProperty",
     "m_ObjectId": "aade1ceaf61b492785a2e39eb953dd49",
@@ -1439,6 +1543,31 @@
         "a": 0.0
     },
     "m_ColorMode": 0
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Vector4MaterialSlot",
+    "m_ObjectId": "b5f0a419f06d492499341aa256812b97",
+    "m_Id": 1613302324,
+    "m_DisplayName": "Tint",
+    "m_SlotType": 0,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "Color_7d78ee2c359d4f19ade4472d2685f5cc",
+    "m_StageCapability": 2,
+    "m_Value": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+    },
+    "m_DefaultValue": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+    },
+    "m_Labels": []
 }
 
 {
@@ -1809,6 +1938,9 @@
             "m_Id": "4d39d53fbeec4014960b5b365938dda4"
         },
         {
+            "m_Id": "b5f0a419f06d492499341aa256812b97"
+        },
+        {
             "m_Id": "6b0ab90a7ad04365aad6b295453bcf34"
         },
         {
@@ -1828,14 +1960,16 @@
         "ca17e4e4-af95-4555-9717-f1a3242bb3b1",
         "2e06bbb1-1d00-41b1-9a66-970991edadb5",
         "a9df75a7-ae51-4da2-b97a-777a276a939a",
-        "b1c69a7c-c745-4526-abb7-df60c2050d4e"
+        "b1c69a7c-c745-4526-abb7-df60c2050d4e",
+        "788644b8-1caf-4e7b-9808-048e834dc4f7"
     ],
     "m_PropertyIds": [
         -848799876,
         -1803378432,
         -1543046475,
         1888368799,
-        -1450975468
+        -1450975468,
+        1613302324
     ]
 }
 
