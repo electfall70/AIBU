@@ -17,6 +17,7 @@ public class CloudGeneration : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+
         offset = cloudHeight / horizonatalStackSize / 2f;
         Vector3 startPosition = transform.position + (Vector3.up * (offset * horizonatalStackSize / 2f));
 
@@ -28,5 +29,6 @@ public class CloudGeneration : MonoBehaviour
             matrix = Matrix4x4.TRS(startPosition - (Vector3.up * offset * i), transform.rotation, transform.localScale);
             Graphics.DrawMesh(quadMesh, matrix, cloudMaterial, layer, camera, 0, null, true, false, false);
         }
+        
     }
 }
