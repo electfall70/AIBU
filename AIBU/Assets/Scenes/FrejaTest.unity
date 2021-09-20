@@ -276,6 +276,63 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 07211208863cecc4a937a84ca38e0811, type: 3}
+--- !u!1001 &661243690
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4477332968600319458, guid: 01b77973d831448479173680a36e3326, type: 3}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4477332968600319458, guid: 01b77973d831448479173680a36e3326, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -4.419998
+      objectReference: {fileID: 0}
+    - target: {fileID: 4477332968600319458, guid: 01b77973d831448479173680a36e3326, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4477332968600319458, guid: 01b77973d831448479173680a36e3326, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4477332968600319458, guid: 01b77973d831448479173680a36e3326, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4477332968600319458, guid: 01b77973d831448479173680a36e3326, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4477332968600319458, guid: 01b77973d831448479173680a36e3326, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4477332968600319458, guid: 01b77973d831448479173680a36e3326, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4477332968600319458, guid: 01b77973d831448479173680a36e3326, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4477332968600319458, guid: 01b77973d831448479173680a36e3326, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4477332968600319458, guid: 01b77973d831448479173680a36e3326, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4477332968600319459, guid: 01b77973d831448479173680a36e3326, type: 3}
+      propertyPath: m_Name
+      value: SummerHouse4 (1)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 01b77973d831448479173680a36e3326, type: 3}
 --- !u!1 &1754803085
 GameObject:
   m_ObjectHideFlags: 0
