@@ -13,23 +13,23 @@ public static class NoiseGenerator
         {
             for (int x = 0; x < chunkSize; x++)
             {
-                noiseMap[z * chunkSize + x] = CalcHeight(x, z, terrainSettings);             
+                noiseMap[z * chunkSize + x] = CalcHeight(x, z, terrainSettings,  prng);             
             }
         }
         return noiseMap;
     }
 
-    private static float CalcHeight(int x, int z, List<GeneratorSetting> terrainSettings)
+    private static float CalcHeight(int x, int z, List<GeneratorSetting> terrainSettings, System.Random prng)
     {
         float y = 0;
         foreach (GeneratorSetting setting in terrainSettings)
         {
-            y += CalcHeight(x, z, setting);
+            y += CalcHeight(x, z, setting, prng);
         }
         return y;
     }
 
-    private static float CalcHeight(int x, int z, GeneratorSetting setting)
+    private static float CalcHeight(int x, int z, GeneratorSetting setting, System.Random prng)
     {
         float xCoord = x * setting.scaleX;
         float zCoord = z * setting.scaleZ;
