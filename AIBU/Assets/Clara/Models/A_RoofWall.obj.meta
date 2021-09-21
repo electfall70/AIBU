@@ -3,7 +3,12 @@ guid: ae0d3fed47e3b7b4bae047d5dede0daf
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: RoofTriangleMat
+    second: {fileID: 2100000, guid: 35f130b8cef55b04b83ef193211e08ec, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
