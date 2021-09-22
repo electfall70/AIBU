@@ -153,7 +153,10 @@ void LitPassGeom(triangle Varyings input[3], inout TriangleStream<Varyings> outS
 {
 	float cameraDist = length(input[0].positionWSAndFogFactor.xyz - _WorldSpaceCameraPos.xyz);
 
-	//if (input[0].color.g < 0.1f || input[1].color.g < 0.1f || input[2].color.g < 0.1f)	
+	if (input[0].color.r < 0.1f || input[1].color.r < 0.1f || input[2].color.r < 0.1f)	return;
+	//if (input[0].color.g > 0.1f || input[1].color.g > 0.1f || input[2].color.g > 0.1f)	return;
+	if (input[0].color.b > 0.1f || input[1].color.b > 0.1f || input[2].color.b > 0.1f)	return;
+
 	if(cameraDist >= 250 || 1.0f - input[0].normalWS.y > 0.09f || input[0].positionOS.y < 0.1f)
 	{
 

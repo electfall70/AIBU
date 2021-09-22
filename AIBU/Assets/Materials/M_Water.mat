@@ -75,7 +75,7 @@ Material:
     - _BlendMode: 0
     - _CullMode: 2
     - _CullModeForward: 2
-    - _Depth: -0.61
+    - _Depth: 0.61
     - _DepthOffsetEnable: 0
     - _Displacement: 0.1
     - _DoubleSidedEnable: 0
@@ -118,7 +118,7 @@ Material:
     - _ZTestTransparent: 4
     - _ZWrite: 0
     m_Colors:
-    - Color_64d59b13f7db40be9901b82b5cdbdf2e: {r: 0.18431374, g: 0.39668274, b: 0.49019608, a: 0.78039217}
+    - Color_64d59b13f7db40be9901b82b5cdbdf2e: {r: 0.18431371, g: 0.3966827, b: 0.490196, a: 0.90588236}
     - Color_9746a60e09774c489cff7e5db8bf1160: {r: 0, g: 0.39832956, b: 0.5, a: 0}
     - Color_a446d11d55204f6b92fdf49e3670b43f: {r: 0.7527145, g: 0.7975201, b: 0.8018868, a: 0.39607844}
     - Color_bbbafe470468443d886fbaf8dc105281: {r: 0.27754533, g: 0.64190185, b: 0.9339623, a: 0}
