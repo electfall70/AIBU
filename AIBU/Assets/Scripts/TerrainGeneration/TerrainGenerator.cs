@@ -30,6 +30,8 @@ public class TerrainGenerator : MonoBehaviour
     [SerializeField] private bool useFalloff;
     [SerializeField] private float falloffStrength;
 
+    public List<GameObject> objectsToPlace;
+
     private MeshFilter meshFilter;
     private MeshCollider meshCollider;
 
@@ -91,6 +93,42 @@ public class TerrainGenerator : MonoBehaviour
         mesh.colors32 = colors32;
         MeshFilter.sharedMesh = mesh;
         MeshCollider.sharedMesh = mesh;
+
+        PlaceObjects();
+    }
+
+    public Color32[] GenerateBiomeMap()
+    {
+        Color32[] colors32 = new Color32[chunkSize * chunkSize];
+
+        FastNoiseLite biomeNoiseGenerator = new FastNoiseLite();
+        biomeNoiseGenerator.SetSeed(randomSeed ? Random.Range(-1000000, 1000000) : seed.GetHashCode());
+        biomeNoiseGenerator.SetNoiseType(biomeSetting.noiseType);
+        biomeNoiseGenerator.SetFrequency(biomeSetting.noiseFrequency);
+        biomeNoiseGenerator.SetFractalType(biomeSetting.fractalType);
+        biomeNoiseGenerator.SetFractalOctaves(biomeSetting.octaves);
+        biomeNoiseGenerator.SetFractalLacunarity(biomeSetting.lacunarity);
+        biomeNoiseGenerator.SetFractalGain(biomeSetting.gain);
+        biomeNoiseGenerator.SetFractalWeightedStrength(biomeSetting.weightedStrength);
+
+        for (int e = 0, z = 0; z < chunkSize; z++)
+        {
+            for (int x = 0; x < chunkSize; x++)
+            {
+                biomeNoiseGenerator.SetFractalType(biomeSetting.fractalType);
+
+                float test = biomeNoiseGenerator.GetNoise(x, z);
+                float test1 = Mathf.SmoothStep(1, 0, test);
+                float test2 = Mathf.SmoothStep(0, 1f, test);
+                biomeNoiseGenerator.SetFractalType(FastNoiseLite.FractalType.PingPong);
+
+                float teste = biomeNoiseGenerator.GetNoise(-x, -z);
+                float test3 = Mathf.SmoothStep(0, 1f, teste);
+
+                colors32[e++] = new Color32((byte)(255 * test1), (byte)(255 * test2), (byte)(255 * test3), 255);
+            }
+        }
+        return colors32;
     }
 
     public enum Channel
@@ -136,38 +174,34 @@ public class TerrainGenerator : MonoBehaviour
         }
         return noise;
     }
-
-    public Color32[] GenerateBiomeMap()
+    
+    void PlaceObjects()
     {
-        Color32[] colors32 = new Color32[chunkSize * chunkSize];
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            DestroyImmediate(transform.GetChild(i).gameObject);
+        }
 
-        FastNoiseLite biomeNoiseGenerator = new FastNoiseLite();
-        biomeNoiseGenerator.SetSeed(randomSeed ? Random.Range(-1000000, 1000000) : seed.GetHashCode());
-        biomeNoiseGenerator.SetNoiseType(biomeSetting.noiseType);
-        biomeNoiseGenerator.SetFrequency(biomeSetting.noiseFrequency);
-        biomeNoiseGenerator.SetFractalType(biomeSetting.fractalType);
-        biomeNoiseGenerator.SetFractalOctaves(biomeSetting.octaves);
-        biomeNoiseGenerator.SetFractalLacunarity(biomeSetting.lacunarity);
-        biomeNoiseGenerator.SetFractalGain(biomeSetting.gain);
-        biomeNoiseGenerator.SetFractalWeightedStrength(biomeSetting.weightedStrength);
+        GameObject parent = new GameObject("Objects");
+        parent.transform.SetParent(transform);
 
-        for (int e = 0, z = 0; z < chunkSize; z++)
+        for (int y = 0; y < chunkSize; y++)
         {
             for (int x = 0; x < chunkSize; x++)
             {
-                biomeNoiseGenerator.SetFractalType(biomeSetting.fractalType);
-
-                float test = biomeNoiseGenerator.GetNoise(x, z);
-                float test1 = Mathf.SmoothStep(1, 0, test);
-                float test2 = Mathf.SmoothStep(0, 1f, test);
-               biomeNoiseGenerator.SetFractalType(FastNoiseLite.FractalType.PingPong);
-
-                float teste = biomeNoiseGenerator.GetNoise(-x, -z);
-                float test3 = Mathf.SmoothStep(0, 1f, teste);
-
-                colors32[e++] = new Color32((byte)(255 * test1), (byte)(255 * test2), (byte)(255 * test3), 255);
+                Ray ray = new Ray(new Vector3(x* scale, 100, y * scale), Vector3.down);
+                if (Physics.Raycast(ray, out RaycastHit hitInfo))
+                {
+                    if (hitInfo.point.y > 2 && Random.value < .1f)
+                    {
+                        GameObject toPlace = Instantiate(objectsToPlace[Random.Range(0,objectsToPlace.Count)]);
+                        toPlace.transform.SetParent(parent.transform);
+                        toPlace.transform.position = hitInfo.point;
+                        toPlace.transform.rotation = Quaternion.FromToRotation(Vector3.up, hitInfo.normal);
+                        toPlace.transform.localScale *= Random.Range(.1f, 3f);
+                    }
+                }
             }
         }
-        return colors32;
     }
 }
