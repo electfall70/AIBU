@@ -61,6 +61,11 @@ public class TerrainGenerator : MonoBehaviour
 
     Color32[] colors32;
 
+    public void Start()
+    {
+        GenerateMap();
+    }
+
     [ContextMenu("Generate")]
     public void GenerateMap()
     {
@@ -102,12 +107,11 @@ public class TerrainGenerator : MonoBehaviour
 
         PlaceRocks();
         PlaceFoliage();
-
     }
 
     private void PlaceRocks()
     {
-        GameObject parent = new GameObject("Foliage");
+        GameObject parent = new GameObject("Rocks");
         parent.transform.SetParent(transform);
 
         for (int y = 0; y < chunkSize; y++)
@@ -123,6 +127,8 @@ public class TerrainGenerator : MonoBehaviour
                         toPlace.transform.SetParent(parent.transform);
                         toPlace.transform.position = hitInfo.point;
                         toPlace.transform.rotation = Quaternion.FromToRotation(Vector3.up, hitInfo.normal);
+                        toPlace.transform.Rotate(Vector3.up, Random.Range(0, 360));
+
                         toPlace.transform.localScale *= Random.Range(.1f, 3f);
                     }
                 }
@@ -132,7 +138,7 @@ public class TerrainGenerator : MonoBehaviour
 
     private void PlaceFoliage()
     {      
-        GameObject parent = new GameObject("Rocks");
+        GameObject parent = new GameObject("Foliage");
         parent.transform.SetParent(transform);
 
         for (int y = 0; y < chunkSize; y++)
@@ -148,6 +154,7 @@ public class TerrainGenerator : MonoBehaviour
                         toPlace.transform.SetParent(parent.transform);
                         toPlace.transform.position = hitInfo.point;
                         toPlace.transform.rotation = Quaternion.FromToRotation(Vector3.up, hitInfo.normal);
+                        toPlace.transform.Rotate(Vector3.up, Random.Range(0, 360));
                         toPlace.transform.localScale *= Random.Range(.3f, 3f);
                     }
                 }
