@@ -142,13 +142,13 @@ public class TerrainGenerator : MonoBehaviour
                 Ray ray = new Ray(new Vector3(x * scale, 100, y * scale), Vector3.down);
                 if (Physics.Raycast(ray, out RaycastHit hitInfo))
                 {
-                    if (hitInfo.point.y > 2 && Random.value < .05f && 1 - hitInfo.normal.y < 0.1f)
+                    if (hitInfo.point.y > 2 && Random.value < .1f && 1 - hitInfo.normal.y < 0.1f)
                     {
                         GameObject toPlace = Instantiate(foliage[Random.Range(0, foliage.Count)]);
                         toPlace.transform.SetParent(parent.transform);
                         toPlace.transform.position = hitInfo.point;
                         toPlace.transform.rotation = Quaternion.FromToRotation(Vector3.up, hitInfo.normal);
-                        toPlace.transform.localScale *= Random.Range(.5f, 3f);
+                        toPlace.transform.localScale *= Random.Range(.3f, 3f);
                     }
                 }
             }
