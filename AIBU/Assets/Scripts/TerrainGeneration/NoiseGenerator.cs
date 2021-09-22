@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/*
 public static class NoiseGenerator
 {
     public static float[] GenerateNoiseMap(int chunkSize, int seed, List<GeneratorSetting> terrainSettings)
@@ -39,4 +39,4 @@ public static class NoiseGenerator
 
         return y;
     }
-}
+}*/
