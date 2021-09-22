@@ -33,6 +33,7 @@ public class TerrainGenerator : MonoBehaviour
     public List<GameObject> rocks;
     public List<GameObject> foliage;
     public List<GameObject> houses;
+    public GameObject boat;
 
     private MeshFilter meshFilter;
     private MeshCollider meshCollider;
@@ -109,8 +110,28 @@ public class TerrainGenerator : MonoBehaviour
         PlaceRocks();
         PlaceFoliage();
         PlaceHouses();
+        PlaceBoat();
     }
 
+    private void PlaceBoat()
+    {
+        GameObject parent = new GameObject("Boats");
+        parent.transform.SetParent(transform);
+
+        Ray ray = new Ray(new Vector3((chunkSize/2 * scale) + Random.Range(-500.0f,500f), 100, (chunkSize / 2 * scale) + Random.Range(-500.0f, 500f)), Vector3.down);
+        if (Physics.Raycast(ray, out RaycastHit hitInfo))
+        {
+            GameObject toPlace = Instantiate(boat);
+            toPlace.transform.SetParent(parent.transform);
+            toPlace.transform.position = hitInfo.point + Vector3.up * 7f;
+            toPlace.transform.rotation = Quaternion.FromToRotation(Vector3.up, hitInfo.normal);
+            toPlace.transform.Rotate(Vector3.up, Random.Range(0, 360));
+            toPlace.transform.localScale *= 6f;
+
+        }
+    }
+
+    //TERRIBLE CODING I KNOW
     private void PlaceHouses()
     {
         GameObject parent = new GameObject("Houses");
@@ -147,10 +168,10 @@ public class TerrainGenerator : MonoBehaviour
         {
             for (int x = 0; x < chunkSize; x++)
             {
-                Ray ray = new Ray(new Vector3(x * scale, 100, y * scale), Vector3.down);
+                Ray ray = new Ray(new Vector3((x + Random.Range(-5f, 5f)) * scale, 100, (y + Random.Range(-5f, 5f)) * scale), Vector3.down);
                 if (Physics.Raycast(ray, out RaycastHit hitInfo))
                 {
-                    if (hitInfo.point.y > 2 && Random.value < .01f)
+                    if (Random.value < .01f)
                     {
                         GameObject toPlace = Instantiate(rocks[Random.Range(0, rocks.Count)]);
                         toPlace.transform.SetParent(parent.transform);
@@ -174,7 +195,7 @@ public class TerrainGenerator : MonoBehaviour
         {
             for (int x = 0; x < chunkSize; x++)
             {
-                Ray ray = new Ray(new Vector3(x * scale, 100, y * scale), Vector3.down);
+                Ray ray = new Ray(new Vector3((x + Random.Range(-5f, 5f)) * scale, 100, (y + Random.Range(-5f, 5f)) * scale), Vector3.down);
                 if (Physics.Raycast(ray, out RaycastHit hitInfo))
                 {
                     if (hitInfo.point.y > 2 && Random.value < .1f && 1 - hitInfo.normal.y < 0.1f)
