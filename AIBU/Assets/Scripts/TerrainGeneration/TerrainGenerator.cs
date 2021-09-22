@@ -32,6 +32,7 @@ public class TerrainGenerator : MonoBehaviour
 
     public List<GameObject> rocks;
     public List<GameObject> foliage;
+    public List<GameObject> houses;
 
     private MeshFilter meshFilter;
     private MeshCollider meshCollider;
@@ -47,7 +48,7 @@ public class TerrainGenerator : MonoBehaviour
             return meshFilter;
         }
     }
-    public MeshCollider MeshCollider 
+    public MeshCollider MeshCollider
     {
         get
         {
@@ -73,17 +74,17 @@ public class TerrainGenerator : MonoBehaviour
 
         float[] noiseRed = GenerateNoise(biomeSettings[0], Channel.R);
         float[] noiseGreen = GenerateNoise(biomeSettings[1], Channel.G);
-        float[] noiseBlue = GenerateNoise(biomeSettings[2] ,Channel.B);
+        float[] noiseBlue = GenerateNoise(biomeSettings[2], Channel.B);
 
         float[] noise = new float[chunkSize * chunkSize];
-        for(int x = 0; x < chunkSize * chunkSize; x++)
+        for (int x = 0; x < chunkSize * chunkSize; x++)
         {
             noise[x] = noiseRed[x] + noiseGreen[x] + noiseBlue[x];
         }
 
         float[] falloff = FalloffGenerator.GenerateFalloffMap(chunkSize);
 
-        for(int z = 0; z < chunkSize; z++)
+        for (int z = 0; z < chunkSize; z++)
         {
             for (int x = 0; x < chunkSize; x++)
             {
@@ -95,7 +96,7 @@ public class TerrainGenerator : MonoBehaviour
         }
 
         Mesh mesh = MeshGenerator.GenerateTerrainMesh(chunkSize, scale, noise).GenerateMesh();
-       
+
         mesh.colors32 = colors32;
         MeshFilter.sharedMesh = mesh;
         MeshCollider.sharedMesh = mesh;
@@ -107,6 +108,34 @@ public class TerrainGenerator : MonoBehaviour
 
         PlaceRocks();
         PlaceFoliage();
+        PlaceHouses();
+    }
+
+    private void PlaceHouses()
+    {
+        GameObject parent = new GameObject("Houses");
+        parent.transform.SetParent(transform);
+
+        for (int y = 0; y < chunkSize; y++)
+        {
+            for (int x = 0; x < chunkSize; x++)
+            {
+                Ray ray = new Ray(new Vector3(x * scale, 100, y * scale), Vector3.down);
+                if (Physics.Raycast(ray, out RaycastHit hitInfo))
+                {
+                    if (hitInfo.point.y > 2 && Random.value < .001f && 1 - hitInfo.normal.y < 0.1f)
+                    {
+                        GameObject toPlace = Instantiate(houses[Random.Range(0, houses.Count)]);
+                        toPlace.transform.SetParent(parent.transform);
+                        toPlace.transform.position = hitInfo.point - Vector3.up;
+                        toPlace.transform.rotation = Quaternion.Slerp(Quaternion.Euler(0, 0, 0), Quaternion.FromToRotation(Vector3.up, hitInfo.normal), 0.5f);
+                        toPlace.transform.Rotate(Vector3.up, Random.Range(0, 360));
+
+                        toPlace.transform.localScale *= Random.Range(1f, 3f);
+                    }
+                }
+            }
+        }
     }
 
     private void PlaceRocks()
@@ -129,7 +158,7 @@ public class TerrainGenerator : MonoBehaviour
                         toPlace.transform.rotation = Quaternion.FromToRotation(Vector3.up, hitInfo.normal);
                         toPlace.transform.Rotate(Vector3.up, Random.Range(0, 360));
 
-                        toPlace.transform.localScale *= Random.Range(.1f, 3f);
+                        toPlace.transform.localScale *= Random.Range(.1f, 6f);
                     }
                 }
             }
@@ -137,7 +166,7 @@ public class TerrainGenerator : MonoBehaviour
     }
 
     private void PlaceFoliage()
-    {      
+    {
         GameObject parent = new GameObject("Foliage");
         parent.transform.SetParent(transform);
 
@@ -198,7 +227,7 @@ public class TerrainGenerator : MonoBehaviour
 
     public enum Channel
     {
-        R,G,B
+        R, G, B
     }
 
     private float[] GenerateNoise(BiomeSetting biomeSetting, Channel c)
@@ -224,7 +253,7 @@ public class TerrainGenerator : MonoBehaviour
                 Color currentColor = colors32[i];
                 switch (c)
                 {
-                    case Channel.R: 
+                    case Channel.R:
                         biomeStrength = currentColor.r;
                         break;
                     case Channel.G:
@@ -239,6 +268,6 @@ public class TerrainGenerator : MonoBehaviour
         }
         return noise;
     }
-    
-    
+
+
 }
