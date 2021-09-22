@@ -18,11 +18,14 @@ public class SliderHandleChanger : MonoBehaviour
     public AudioMixerSnapshot volumeMed;
     public AudioMixerSnapshot volumeHig;
 
+    
+
     public void SliderChange()
     {
         float sliderValue = slider.value;
         //Debug.Log("reached SliderChange. value is" + sliderValue);
 
+        SnapshotChange();
         //would use a switch case but it cant handle comparisions. rip.
         if (sliderValue < 0.2)
         {
