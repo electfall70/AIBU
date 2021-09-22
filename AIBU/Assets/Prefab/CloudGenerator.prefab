@@ -77,9 +77,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnHeight: 200
   heightVariation: 40
-  spawnAreaX: 1200
-  spawnAreaZ: 1200
-  cloudAmount: 20
+  spawnAreaX: 750
+  spawnAreaZ: 750
+  cloudAmount: 5
   cloudGameObject: {fileID: 3342051510933668313, guid: 60111e309a2a1cf478678e55f7200435, type: 3}
 --- !u!1 &1658789617659913452
 GameObject:
@@ -124,9 +124,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc4ff22e5a856bc48ac1180e28eb55af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnHeight: 400
+  spawnHeight: 350
   heightVariation: 50
-  spawnAreaX: 1800
-  spawnAreaZ: 1800
-  cloudAmount: 8
+  spawnAreaX: 750
+  spawnAreaZ: 750
+  cloudAmount: 10
   cloudGameObject: {fileID: 7660988852021269212, guid: b91d8b76b1edde34893eb9b63e9fa7b4, type: 3}
