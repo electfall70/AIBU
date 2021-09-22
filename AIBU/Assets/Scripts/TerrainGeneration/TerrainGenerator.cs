@@ -30,7 +30,8 @@ public class TerrainGenerator : MonoBehaviour
     [SerializeField] private bool useFalloff;
     [SerializeField] private float falloffStrength;
 
-    public List<GameObject> objectsToPlace;
+    public List<GameObject> rocks;
+    public List<GameObject> foliage;
 
     private MeshFilter meshFilter;
     private MeshCollider meshCollider;
@@ -94,7 +95,64 @@ public class TerrainGenerator : MonoBehaviour
         MeshFilter.sharedMesh = mesh;
         MeshCollider.sharedMesh = mesh;
 
-        PlaceObjects();
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            DestroyImmediate(transform.GetChild(i).gameObject);
+        }
+
+        PlaceRocks();
+        PlaceFoliage();
+
+    }
+
+    private void PlaceRocks()
+    {
+        GameObject parent = new GameObject("Foliage");
+        parent.transform.SetParent(transform);
+
+        for (int y = 0; y < chunkSize; y++)
+        {
+            for (int x = 0; x < chunkSize; x++)
+            {
+                Ray ray = new Ray(new Vector3(x * scale, 100, y * scale), Vector3.down);
+                if (Physics.Raycast(ray, out RaycastHit hitInfo))
+                {
+                    if (hitInfo.point.y > 2 && Random.value < .01f)
+                    {
+                        GameObject toPlace = Instantiate(rocks[Random.Range(0, rocks.Count)]);
+                        toPlace.transform.SetParent(parent.transform);
+                        toPlace.transform.position = hitInfo.point;
+                        toPlace.transform.rotation = Quaternion.FromToRotation(Vector3.up, hitInfo.normal);
+                        toPlace.transform.localScale *= Random.Range(.1f, 3f);
+                    }
+                }
+            }
+        }
+    }
+
+    private void PlaceFoliage()
+    {      
+        GameObject parent = new GameObject("Rocks");
+        parent.transform.SetParent(transform);
+
+        for (int y = 0; y < chunkSize; y++)
+        {
+            for (int x = 0; x < chunkSize; x++)
+            {
+                Ray ray = new Ray(new Vector3(x * scale, 100, y * scale), Vector3.down);
+                if (Physics.Raycast(ray, out RaycastHit hitInfo))
+                {
+                    if (hitInfo.point.y > 2 && Random.value < .05f && 1 - hitInfo.normal.y < 0.1f)
+                    {
+                        GameObject toPlace = Instantiate(foliage[Random.Range(0, foliage.Count)]);
+                        toPlace.transform.SetParent(parent.transform);
+                        toPlace.transform.position = hitInfo.point;
+                        toPlace.transform.rotation = Quaternion.FromToRotation(Vector3.up, hitInfo.normal);
+                        toPlace.transform.localScale *= Random.Range(.5f, 3f);
+                    }
+                }
+            }
+        }
     }
 
     public Color32[] GenerateBiomeMap()
@@ -175,33 +233,5 @@ public class TerrainGenerator : MonoBehaviour
         return noise;
     }
     
-    void PlaceObjects()
-    {
-        for (int i = 0; i < transform.childCount; i++)
-        {
-            DestroyImmediate(transform.GetChild(i).gameObject);
-        }
-
-        GameObject parent = new GameObject("Objects");
-        parent.transform.SetParent(transform);
-
-        for (int y = 0; y < chunkSize; y++)
-        {
-            for (int x = 0; x < chunkSize; x++)
-            {
-                Ray ray = new Ray(new Vector3(x* scale, 100, y * scale), Vector3.down);
-                if (Physics.Raycast(ray, out RaycastHit hitInfo))
-                {
-                    if (hitInfo.point.y > 2 && Random.value < .1f)
-                    {
-                        GameObject toPlace = Instantiate(objectsToPlace[Random.Range(0,objectsToPlace.Count)]);
-                        toPlace.transform.SetParent(parent.transform);
-                        toPlace.transform.position = hitInfo.point;
-                        toPlace.transform.rotation = Quaternion.FromToRotation(Vector3.up, hitInfo.normal);
-                        toPlace.transform.localScale *= Random.Range(.1f, 3f);
-                    }
-                }
-            }
-        }
-    }
+    
 }
