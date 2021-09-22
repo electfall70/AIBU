@@ -64,7 +64,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - Vector1_61cf60efaae244a5a2829844ee868e72: 0.42
+    - Vector1_61cf60efaae244a5a2829844ee868e72: 0.34
     - Vector1_d9757d0a294d4e19b113bb9db4535f8a: 0
     - _AddPrecomputedVelocity: 0
     - _AlphaCutoffEnable: 0
@@ -75,7 +75,7 @@ Material:
     - _BlendMode: 0
     - _CullMode: 2
     - _CullModeForward: 2
-    - _Depth: -1.02
+    - _Depth: -0.61
     - _DepthOffsetEnable: 0
     - _Displacement: 0.1
     - _DoubleSidedEnable: 0
@@ -120,7 +120,7 @@ Material:
     m_Colors:
     - Color_64d59b13f7db40be9901b82b5cdbdf2e: {r: 0.18431374, g: 0.39668274, b: 0.49019608, a: 0.78039217}
     - Color_9746a60e09774c489cff7e5db8bf1160: {r: 0, g: 0.39832956, b: 0.5, a: 0}
-    - Color_a446d11d55204f6b92fdf49e3670b43f: {r: 0.003782494, g: 0.72059834, b: 0.8018868, a: 0.39607844}
+    - Color_a446d11d55204f6b92fdf49e3670b43f: {r: 0.7527145, g: 0.7975201, b: 0.8018868, a: 0.39607844}
     - Color_bbbafe470468443d886fbaf8dc105281: {r: 0.27754533, g: 0.64190185, b: 0.9339623, a: 0}
     - Vector2_b23cf617e1064a15bbebcc8e3244b753: {r: 0, g: 0, b: 0, a: 0}
     - _DoubleSidedConstants: {r: 1, g: 1, b: -1, a: 0}
